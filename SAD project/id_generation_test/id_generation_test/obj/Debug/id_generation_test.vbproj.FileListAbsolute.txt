@@ -1,0 +1,12 @@
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\bin\Debug\id_generation_test.exe.config
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\bin\Debug\id_generation_test.exe
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\bin\Debug\id_generation_test.pdb
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\bin\Debug\id_generation_test.xml
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\bin\Debug\MySql.Data.dll
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\obj\Debug\id_generation_test.vbprojResolveAssemblyReference.cache
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\obj\Debug\WindowsApplication4.Form1.resources
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\obj\Debug\WindowsApplication4.Resources.resources
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\obj\Debug\id_generation_test.vbproj.GenerateResource.Cache
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\obj\Debug\id_generation_test.exe
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\obj\Debug\id_generation_test.xml
+C:\Users\Lance\Documents\SAD project\id_generation_test\id_generation_test\obj\Debug\id_generation_test.pdb
