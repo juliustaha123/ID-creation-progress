@@ -32,12 +32,20 @@ Partial Class Form1
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.picStudent = New System.Windows.Forms.PictureBox()
+        Me.txtPhoto = New System.Windows.Forms.TextBox()
+        Me.btnBrowse = New System.Windows.Forms.Button()
+        Me.btnSaveImage = New System.Windows.Forms.Button()
+        Me.OPDPhoto = New System.Windows.Forms.OpenFileDialog()
+        Me.picImportStudent = New System.Windows.Forms.PictureBox()
         CType(Me.dgvUsers, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picStudent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picImportStudent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(76, 402)
+        Me.btnRefresh.Location = New System.Drawing.Point(513, 459)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(129, 58)
         Me.btnRefresh.TabIndex = 0
@@ -47,7 +55,7 @@ Partial Class Form1
         'dgvUsers
         '
         Me.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvUsers.Location = New System.Drawing.Point(536, 44)
+        Me.dgvUsers.Location = New System.Drawing.Point(513, 195)
         Me.dgvUsers.Name = "dgvUsers"
         Me.dgvUsers.RowTemplate.Height = 28
         Me.dgvUsers.Size = New System.Drawing.Size(475, 202)
@@ -72,14 +80,14 @@ Partial Class Form1
         '
         'txtSelectID
         '
-        Me.txtSelectID.Location = New System.Drawing.Point(289, 353)
+        Me.txtSelectID.Location = New System.Drawing.Point(710, 410)
         Me.txtSelectID.Name = "txtSelectID"
         Me.txtSelectID.Size = New System.Drawing.Size(129, 26)
         Me.txtSelectID.TabIndex = 4
         '
         'btnSelect
         '
-        Me.btnSelect.Location = New System.Drawing.Point(289, 402)
+        Me.btnSelect.Location = New System.Drawing.Point(710, 459)
         Me.btnSelect.Name = "btnSelect"
         Me.btnSelect.Size = New System.Drawing.Size(129, 58)
         Me.btnSelect.TabIndex = 5
@@ -105,7 +113,7 @@ Partial Class Form1
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(424, 402)
+        Me.btnEdit.Location = New System.Drawing.Point(845, 459)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(129, 58)
         Me.btnEdit.TabIndex = 5
@@ -114,24 +122,75 @@ Partial Class Form1
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(559, 402)
+        Me.btnSave.Location = New System.Drawing.Point(980, 459)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(129, 58)
         Me.btnSave.TabIndex = 5
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'picStudent
+        '
+        Me.picStudent.Location = New System.Drawing.Point(343, 12)
+        Me.picStudent.Name = "picStudent"
+        Me.picStudent.Size = New System.Drawing.Size(175, 141)
+        Me.picStudent.TabIndex = 6
+        Me.picStudent.TabStop = False
+        '
+        'txtPhoto
+        '
+        Me.txtPhoto.Location = New System.Drawing.Point(58, 353)
+        Me.txtPhoto.Name = "txtPhoto"
+        Me.txtPhoto.ReadOnly = True
+        Me.txtPhoto.Size = New System.Drawing.Size(334, 26)
+        Me.txtPhoto.TabIndex = 2
+        '
+        'btnBrowse
+        '
+        Me.btnBrowse.Location = New System.Drawing.Point(239, 385)
+        Me.btnBrowse.Name = "btnBrowse"
+        Me.btnBrowse.Size = New System.Drawing.Size(153, 63)
+        Me.btnBrowse.TabIndex = 7
+        Me.btnBrowse.Text = "BROWSE"
+        Me.btnBrowse.UseVisualStyleBackColor = True
+        '
+        'btnSaveImage
+        '
+        Me.btnSaveImage.Location = New System.Drawing.Point(239, 454)
+        Me.btnSaveImage.Name = "btnSaveImage"
+        Me.btnSaveImage.Size = New System.Drawing.Size(153, 63)
+        Me.btnSaveImage.TabIndex = 7
+        Me.btnSaveImage.Text = "SAVE IMAGE"
+        Me.btnSaveImage.UseVisualStyleBackColor = True
+        '
+        'OPDPhoto
+        '
+        Me.OPDPhoto.FileName = "OPDPhoto"
+        '
+        'picImportStudent
+        '
+        Me.picImportStudent.Location = New System.Drawing.Point(58, 385)
+        Me.picImportStudent.Name = "picImportStudent"
+        Me.picImportStudent.Size = New System.Drawing.Size(175, 132)
+        Me.picImportStudent.TabIndex = 8
+        Me.picImportStudent.TabStop = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1179, 540)
+        Me.Controls.Add(Me.picImportStudent)
+        Me.Controls.Add(Me.btnSaveImage)
+        Me.Controls.Add(Me.btnBrowse)
+        Me.Controls.Add(Me.picStudent)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.btnSelect)
         Me.Controls.Add(Me.txtSelectID)
         Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.lblName)
+        Me.Controls.Add(Me.txtPhoto)
         Me.Controls.Add(Me.txtEmail)
         Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.dgvUsers)
@@ -139,6 +198,8 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Form1"
         CType(Me.dgvUsers, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picStudent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picImportStudent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -153,5 +214,11 @@ Partial Class Form1
     Friend WithEvents lblEmail As System.Windows.Forms.Label
     Friend WithEvents btnEdit As System.Windows.Forms.Button
     Friend WithEvents btnSave As System.Windows.Forms.Button
+    Friend WithEvents picStudent As System.Windows.Forms.PictureBox
+    Friend WithEvents txtPhoto As System.Windows.Forms.TextBox
+    Friend WithEvents btnBrowse As System.Windows.Forms.Button
+    Friend WithEvents btnSaveImage As System.Windows.Forms.Button
+    Friend WithEvents OPDPhoto As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents picImportStudent As System.Windows.Forms.PictureBox
 
 End Class

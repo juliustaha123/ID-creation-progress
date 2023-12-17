@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.IO
 
 Public Class Form1
     Private userIdToEdit As Integer = -1 ' Variable to store the user ID being edited
@@ -166,6 +167,82 @@ Public Class Form1
     End Sub
 
 
+    'BTN browse image
 
+    Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
+        Try
+            With OPDPhoto
+                .CheckFileExists = True
+                .CheckPathExists = True
+                .DefaultExt = "jpg"
+                .DereferenceLinks = True
+                .FileName = ""
+                .Filter = "(*.jpg)|*.jpg|(*.png)|*.png|(*.jpg)|*.jpg|All Files|*.*"
+                .Multiselect = False
+                .RestoreDirectory = True
+                .Title = "SELECT FILE TO OPEN"
+                .ValidateNames = True
+
+                If .ShowDialog = Windows.Forms.DialogResult.OK Then
+                    Try
+                        txtPhoto.Text = .FileName
+                        picImportStudent.ImageLocation = .FileName
+                        picImportStudent.SizeMode = PictureBoxSizeMode.StretchImage
+                    Catch fileException As Exception
+                        Throw fileException
+                    End Try
+                End If
+            End With
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    'BTN SAVE IMAGE'
     
+    Private Sub btnSaveImage_Click(sender As Object, e As EventArgs) Handles btnSaveImage.Click
+        EnableEditing()
+        Try
+            If String.IsNullOrEmpty(txtPhoto.Text) OrElse String.IsNullOrEmpty(txtName.Text) Then
+                MessageBox.Show("You need to select an image first", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            ElseIf Directory.Exists(Application.StartupPath & "\Profiles\" & txtName.Text & ".png") Then
+                Directory.Delete(txtName.Text)
+            Else
+                picImportStudent.Image.Save(Application.StartupPath & "\Profiles\" & txtName.Text & ".png")
+
+                MessageBox.Show(userIdToEdit)
+
+                If userIdToEdit <> -1 Then
+                    Dim connectionString As String = "server=localhost;user=root;password=;database=test_vb_connect;"
+                    Dim connection As New MySqlConnection(connectionString)
+
+                    Try
+                        connection.Open()
+
+                        ' Perform database operations to update user data
+                        Dim query As String = "UPDATE users SET image = @image WHERE user_ID = @userId"
+                        Dim command As New MySqlCommand(query, connection)
+                        command.Parameters.AddWithValue("@image", txtName.Text & ".png")
+                        command.Parameters.AddWithValue("@userId", userIdToEdit)
+
+                        command.ExecuteNonQuery()
+
+                    Catch ex As Exception
+                        MessageBox.Show("Error: " & ex.Message)
+                    Finally
+                        connection.Close()
+                    End Try
+                End If
+
+
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
+
+
+
+
 End Class
