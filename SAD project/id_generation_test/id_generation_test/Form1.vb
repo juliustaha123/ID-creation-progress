@@ -3,6 +3,7 @@ Imports System.IO
 
 Public Class Form1
     Private userIdToEdit As Integer = -1 ' Variable to store the user ID being edited
+    Dim dataTable As New DataTable() ' Data Table
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         ' Load all data into DataGridView
@@ -20,6 +21,21 @@ Public Class Form1
             ' Load user data based on the selected ID
             LoadUserDataById(userId)
         End If
+    End Sub
+
+    'Click feature for data grid
+
+    Private Sub dgvUsers_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvUsers.CellMouseClick
+        Try
+            With dgvUsers
+                txtName.Text = .CurrentRow.Cells("name").Value.ToString
+                txtEmail.Text = .CurrentRow.Cells("email").Value.ToString
+                LoadImage()
+                'txtN.Text = .CurrentRow.Cells("image").Value.ToString
+            End With
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     'BUTTONS
@@ -42,7 +58,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-
+        'Enable editing
         EnableEditing()
     End Sub
 
@@ -59,7 +75,6 @@ Public Class Form1
             Dim query As String = "SELECT * FROM users"
             Dim adapter As New MySqlDataAdapter(query, connection)
 
-            Dim dataTable As New DataTable()
             adapter.Fill(dataTable)
 
             ' Bind DataTable to DataGridView
@@ -96,6 +111,7 @@ Public Class Form1
             If reader.Read() Then
                 txtName.Text = reader("name").ToString()
                 txtEmail.Text = reader("email").ToString()
+                LoadImage()
 
             Else
                 txtName.Text = String.Empty
@@ -201,7 +217,9 @@ Public Class Form1
     'BTN SAVE IMAGE'
     
     Private Sub btnSaveImage_Click(sender As Object, e As EventArgs) Handles btnSaveImage.Click
+        ' Enabling the edit
         EnableEditing()
+
         Try
             If String.IsNullOrEmpty(txtPhoto.Text) OrElse String.IsNullOrEmpty(txtName.Text) Then
                 MessageBox.Show("You need to select an image first", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -209,8 +227,6 @@ Public Class Form1
                 Directory.Delete(txtName.Text)
             Else
                 picImportStudent.Image.Save(Application.StartupPath & "\Profiles\" & txtName.Text & ".png")
-
-                MessageBox.Show(userIdToEdit)
 
                 If userIdToEdit <> -1 Then
                     Dim connectionString As String = "server=localhost;user=root;password=;database=test_vb_connect;"
@@ -234,7 +250,6 @@ Public Class Form1
                     End Try
                 End If
 
-
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -242,7 +257,51 @@ Public Class Form1
 
     End Sub
 
+    'Load the image of the Student
+
+    Private Sub LoadImage()
+        'enable editing
+        EnableEditing()
 
 
 
+        Dim connectionString As String = "server=localhost;user=root;password=;database=test_vb_connect;"
+        Dim connection As New MySqlConnection(connectionString)
+
+        Try
+            connection.Open()
+
+            ' Perform database operations to update user data
+            Dim query As String = "Select * FROM users WHERE user_ID = @name"
+            Dim command As New MySqlCommand(query, connection)
+            command.Parameters.AddWithValue("@name", txtName.Text)
+
+            command.ExecuteNonQuery()
+
+            MessageBox.Show(dataTable.Rows.Count)
+            MessageBox.Show(txtName.Text)
+            If dataTable.Rows.Count > 0 Then
+                ' debug
+                MessageBox.Show("Proceed")
+                If String.IsNullOrEmpty(dataTable.Rows(0).Item("image").ToString) Then
+                    picStudent.ImageLocation = Application.StartupPath & "\Profiles\default.png"
+                Else
+                    picStudent.ImageLocation = Application.StartupPath & "\Profiles\" & dataTable.Rows(0).Item("image").ToString
+                End If
+            End If
+            
+
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            connection.Close()
+        End Try
+    End Sub
+
+
+
+    
+    
+    
 End Class

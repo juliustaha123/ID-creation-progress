@@ -58,7 +58,7 @@ Partial Class Form1
         Me.dgvUsers.Location = New System.Drawing.Point(513, 195)
         Me.dgvUsers.Name = "dgvUsers"
         Me.dgvUsers.RowTemplate.Height = 28
-        Me.dgvUsers.Size = New System.Drawing.Size(475, 202)
+        Me.dgvUsers.Size = New System.Drawing.Size(654, 202)
         Me.dgvUsers.TabIndex = 1
         '
         'txtName
@@ -131,9 +131,11 @@ Partial Class Form1
         '
         'picStudent
         '
-        Me.picStudent.Location = New System.Drawing.Point(343, 12)
+        Me.picStudent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picStudent.Location = New System.Drawing.Point(513, 12)
         Me.picStudent.Name = "picStudent"
-        Me.picStudent.Size = New System.Drawing.Size(175, 141)
+        Me.picStudent.Size = New System.Drawing.Size(191, 177)
+        Me.picStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picStudent.TabIndex = 6
         Me.picStudent.TabStop = False
         '
