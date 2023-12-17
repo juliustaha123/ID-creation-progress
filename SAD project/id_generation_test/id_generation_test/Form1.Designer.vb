@@ -30,6 +30,8 @@ Partial Class Form1
         Me.btnSelect = New System.Windows.Forms.Button()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.lblEmail = New System.Windows.Forms.Label()
+        Me.btnEdit = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         CType(Me.dgvUsers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -55,6 +57,7 @@ Partial Class Form1
         '
         Me.txtName.Location = New System.Drawing.Point(141, 53)
         Me.txtName.Name = "txtName"
+        Me.txtName.ReadOnly = True
         Me.txtName.Size = New System.Drawing.Size(173, 26)
         Me.txtName.TabIndex = 2
         '
@@ -87,6 +90,7 @@ Partial Class Form1
         '
         Me.txtEmail.Location = New System.Drawing.Point(141, 100)
         Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.ReadOnly = True
         Me.txtEmail.Size = New System.Drawing.Size(173, 26)
         Me.txtEmail.TabIndex = 2
         '
@@ -99,11 +103,31 @@ Partial Class Form1
         Me.lblEmail.TabIndex = 3
         Me.lblEmail.Text = "email"
         '
+        'btnEdit
+        '
+        Me.btnEdit.Location = New System.Drawing.Point(424, 402)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(129, 58)
+        Me.btnEdit.TabIndex = 5
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(559, 402)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(129, 58)
+        Me.btnSave.TabIndex = 5
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1179, 540)
+        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.btnSelect)
         Me.Controls.Add(Me.txtSelectID)
         Me.Controls.Add(Me.lblEmail)
@@ -127,5 +151,7 @@ Partial Class Form1
     Friend WithEvents btnSelect As System.Windows.Forms.Button
     Friend WithEvents txtEmail As System.Windows.Forms.TextBox
     Friend WithEvents lblEmail As System.Windows.Forms.Label
+    Friend WithEvents btnEdit As System.Windows.Forms.Button
+    Friend WithEvents btnSave As System.Windows.Forms.Button
 
 End Class
