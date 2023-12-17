@@ -3,7 +3,6 @@ Imports System.IO
 
 Public Class Form1
     Private userIdToEdit As Integer = -1 ' Variable to store the user ID being edited
-    Dim dataTable As New DataTable() ' Data Table
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         ' Load all data into DataGridView
@@ -74,7 +73,7 @@ Public Class Form1
             ' Perform database operations
             Dim query As String = "SELECT * FROM users"
             Dim adapter As New MySqlDataAdapter(query, connection)
-
+            Dim dataTable As New DataTable()
             adapter.Fill(dataTable)
 
             ' Bind DataTable to DataGridView
@@ -261,7 +260,7 @@ Public Class Form1
 
     Private Sub LoadImage()
         'enable editing
-        EnableEditing()
+        'EnableEditing()
 
 
 
@@ -272,11 +271,13 @@ Public Class Form1
             connection.Open()
 
             ' Perform database operations to update user data
-            Dim query As String = "Select * FROM users WHERE user_ID = @name"
+            Dim query As String = "Select image FROM users WHERE name = @name"
             Dim command As New MySqlCommand(query, connection)
             command.Parameters.AddWithValue("@name", txtName.Text)
 
-            command.ExecuteNonQuery()
+            Dim adapter As New MySqlDataAdapter(command)
+            Dim dataTable As New DataTable()
+            adapter.Fill(dataTable)
 
             MessageBox.Show(dataTable.Rows.Count)
             MessageBox.Show(txtName.Text)
